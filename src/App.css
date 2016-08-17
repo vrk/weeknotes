@@ -1,4 +1,8 @@
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro';
+
 .App {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 11pt;
   text-align: center;
 }
 
