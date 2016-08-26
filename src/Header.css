@@ -1,0 +1,42 @@
+#header {
+  margin: auto;
+  width: 1000px;
+}
+
+#header nav, #logo {
+  display: inline-block;
+  line-height: 100px;
+}
+
+#logo {
+  font-size: 30pt;
+  letter-spacing: 0.2em;
+  vertical-align: top;
+  width: 35%;
+}
+
+#header > nav {
+  vertical-align: top;
+  width: 65%;
+}
+
+#header nav.left {
+  text-align: left;
+  width: 30%;
+}
+
+#header nav.right {
+  text-align: right;
+  width: 70%;
+}
+
+#header hr {
+  border: 0;
+  border-top: 2px solid #DDE4E8;
+  margin: 0 auto;
+  width: 95%;
+}
+
+span.link {
+  padding: 50px;
+}
