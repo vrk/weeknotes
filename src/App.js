@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import DateHeader from './DateHeader'
 import Header from './Header'
-import NoteNavigation from './NoteNavigation'
+import WeekNote from './WeekNote'
 
 import './App.css';
 
@@ -13,6 +13,7 @@ class App extends Component {
         <Header />
         <div id="main">
           <DateHeader />
+          <WeekNote />
         </div>
       </div>
     );
