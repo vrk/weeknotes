@@ -13,7 +13,7 @@ class App extends Component {
         <Header />
         <div id="main">
           <DateHeader />
-          <WeekNote />
+          <WeekNote>TODO:</WeekNote>
         </div>
       </div>
     );
