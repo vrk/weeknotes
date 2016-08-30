@@ -2,20 +2,11 @@ import React, { Component } from 'react';
 
 import DateHeader from './DateHeader'
 import Header from './Header'
-import WeekNote from './WeekNote'
-import WeekNoteEditor from './WeekNoteEditor'
+import WeekNotes from './WeekNotes'
 
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-    };
-  }
-
-
   // Override
   render() {
     return (
@@ -23,8 +14,7 @@ class App extends Component {
         <Header />
         <div id="main">
           <DateHeader />
-          <WeekNote contents="TODO:" />
-          <WeekNoteEditor contents="TODO:" />
+          <WeekNotes />
         </div>
       </div>
     );
@@ -32,3 +22,4 @@ class App extends Component {
 }
 
 export default App;
+

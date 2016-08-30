@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Remarkable from 'remarkable';
 
-import { EDITOR_FOCUS } from './WeekNoteActions'
-
 import './WeekNote.css';
 
 class WeekNote extends Component {
@@ -19,27 +17,11 @@ class WeekNote extends Component {
   }
 
   // Override
-  componentWillMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-        this.forceUpdate()
-    );
-  }
-
-  // Override
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  // Override
   render() {
-    const { store } = this.context;
-    const state = store.getState();
-
-    if (state.isNoteEditorActive) return null;
+    if (!this.props.active) return null;
 
     return (
-      <div id="week-note" onClick={this.handleClick}>
+      <div id="week-note" onClick={this.props.onActivate}>
         <div dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
     );
@@ -55,8 +37,7 @@ class WeekNote extends Component {
 
   // On-click handler for the body of the note.
   handleClick() {
-    const { store } = this.context;
-    store.dispatch({ type: EDITOR_FOCUS });
+    console.log("clickeddd");
   }
 }
 
