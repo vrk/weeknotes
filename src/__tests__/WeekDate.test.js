@@ -1,3 +1,4 @@
+import MockDate from 'mockdate';
 import WeekDate from '../WeekDate';
 
 const SUN_DEC_27_2015 = new Date('Sun Dec 27 2015');
@@ -82,4 +83,27 @@ describe('decrementWeek() tests', () => {
     weekdate.decrementWeek();
     expect(weekdate.getStartOfRange()).toEqual(SUN_AUG_28_2016);
   });
+});
+
+describe('constructor / getToday tests', () => {
+  it('empty constructor creates new date for today', () => {
+    // Set today's date as Sept 1st, 2016.
+    MockDate.set(THU_SEPT_1_2016.valueOf());
+
+    const weekdate = new WeekDate();
+    expect(weekdate.getToday()).toEqual(THU_SEPT_1_2016);
+
+    MockDate.reset();
+  });
+
+  it('null constructor creates new date for today', () => {
+    // Set today's date as Sept 1st, 2016.
+    MockDate.set(THU_SEPT_1_2016.valueOf());
+
+    const weekdate = new WeekDate(null);
+    expect(weekdate.getToday()).toEqual(THU_SEPT_1_2016);
+
+    MockDate.reset();
+  });
+
 });
