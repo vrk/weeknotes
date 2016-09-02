@@ -1,4 +1,5 @@
 import MockDate from 'mockdate';
+
 import WeekDate from '../WeekDate';
 
 const SUN_DEC_27_2015 = new Date('Sun Dec 27 2015');
@@ -105,5 +106,4 @@ describe('constructor / getToday tests', () => {
 
     MockDate.reset();
   });
-
 });
