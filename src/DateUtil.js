@@ -9,6 +9,16 @@ class DateUtil {
     const monthIndex = date.getMonth();
     return MONTHS[monthIndex].substr(0, 3);
   }
+
+  static getDayString(date) {
+    if (!date instanceof Date)
+      throw new Error('Invalid parameter');
+
+    const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+      'Friday', 'Saturday'];
+    const dayIndex = date.getDay();
+    return DAYS[dayIndex].substr(0, 3);
+  }
 }
 
 export default DateUtil;

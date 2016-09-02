@@ -20,6 +20,7 @@ class DateHeader extends Component {
     this.onBlur = this.onBlur.bind(this);
     this.incrementWeek = this.incrementWeek.bind(this);
     this.decrementWeek = this.decrementWeek.bind(this);
+    this.resetWeek = this.resetWeek.bind(this);
   }
 
   // Override
@@ -38,7 +39,8 @@ class DateHeader extends Component {
             active={this.state.arrowsActive}
             onClick={this.decrementWeek}
           />
-          <span className='range'>
+          <span className='range'
+            onClick={this.resetWeek}>
             {this.getDateRange()}
           </span>
           <DateArrow
@@ -54,12 +56,14 @@ class DateHeader extends Component {
   getDateRange() {
     const getStartDateString = () => {
       const start = this.state.week.getStartOfRange();
-      return DateUtil.getMonthString(start) + ' ' + start.getDate();
+      return DateUtil.getDayString(start) + ' ' +
+        DateUtil.getMonthString(start) + ' ' + start.getDate();
     }
 
     const getEndDateString = () => {
       const end = this.state.week.getEndOfRange();
-      return DateUtil.getMonthString(end) + ' ' + end.getDay() + ', ' +
+      return DateUtil.getDayString(end) + ' ' +
+        DateUtil.getMonthString(end) + ' ' + end.getDay() + ', ' +
         end.getFullYear();
     }
     return getStartDateString() + ' - ' + getEndDateString();
@@ -101,6 +105,12 @@ class DateHeader extends Component {
   decrementWeek() {
     this.state.week.decrementWeek();
     this.forceUpdate();
+  }
+
+  resetWeek() {
+    this.setState({
+      week: new WeekDate()
+    });
   }
 }
 
