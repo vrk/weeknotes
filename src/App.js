@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import DateHeader from './DateHeader'
 import Header from './Header'
-import WeekNoteForm from './WeekNoteForm'
+import Main from './Main'
 
 import './App.css';
 
@@ -12,10 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div id="main">
-          <DateHeader />
-          <WeekNoteForm />
-        </div>
+        <Main />
       </div>
     );
   }
