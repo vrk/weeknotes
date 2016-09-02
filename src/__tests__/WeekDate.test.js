@@ -57,8 +57,29 @@ describe('getEndOfRange() tests', () => {
 });
 
 describe('incrementWeek() tests', () => {
-  it('increment week advances correctly', () => {
+  it('increment week advances correctly saturday', () => {
     const weekdate = new WeekDate(SAT_SEPT_3_2016);
+    weekdate.incrementWeek();
     expect(weekdate.getStartOfRange()).toEqual(SUN_SEPT_4_2016);
+  });
+
+  it('increment week advances correctly sunday', () => {
+    const weekdate = new WeekDate(SUN_AUG_28_2016);
+    weekdate.incrementWeek();
+    expect(weekdate.getStartOfRange()).toEqual(SUN_SEPT_4_2016);
+  });
+});
+
+describe('decrementWeek() tests', () => {
+  it('decrement week decreases correctly saturday', () => {
+    const weekdate = new WeekDate(SAT_SEPT_10_2016);
+    weekdate.decrementWeek();
+    expect(weekdate.getStartOfRange()).toEqual(SUN_AUG_28_2016);
+  });
+
+  it('decrement week decreases correctly sunday', () => {
+    const weekdate = new WeekDate(SUN_SEPT_4_2016);
+    weekdate.decrementWeek();
+    expect(weekdate.getStartOfRange()).toEqual(SUN_AUG_28_2016);
   });
 });

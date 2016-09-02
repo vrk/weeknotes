@@ -1,6 +1,6 @@
 class WeekDate {
   constructor(date) {
-    this.date = date || new Date();
+    this.date = new Date(date);
   }
 
   getStartOfRange() {
