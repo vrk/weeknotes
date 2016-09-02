@@ -7,9 +7,15 @@ import WeekNoteForm from './WeekNoteForm'
 class Main extends Component {
   constructor() {
     super();
-    let entries = {
-      '20160828': 'TODO:'
-    };
+    if (!localStorage.getItem('__WEEK_NOTES_ENTRIES__')) {
+      localStorage.setItem('__WEEK_NOTES_ENTRIES__',
+        JSON.stringify(
+        entries = {
+          '20160828': 'TODO:'
+        }));
+    }
+    let entries = JSON.parse(localStorage.getItem('__WEEK_NOTES_ENTRIES__'));
+
     this.state = {
       week: new WeekDate(),
       entries: entries
@@ -52,6 +58,8 @@ class Main extends Component {
 
   onUpdateEntry(contents) {
     this.state.entries[this.state.week.getId()] = contents;
+    localStorage.setItem(
+      '__WEEK_NOTES_ENTRIES__', JSON.stringify(this.state.entries));
     this.forceUpdate();
   }
 }
