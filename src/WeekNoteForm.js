@@ -17,6 +17,7 @@ class WeekNoteForm extends Component {
 
   // Override
   render() {
+    this.updatingText = this.props.contents;
     return (
       <form onBlur={this.handleFormBlur}>
         <WeekNote
