@@ -55,3 +55,10 @@ describe('getEndOfRange() tests', () => {
     expect(weekdate.getEndOfRange()).toEqual(SAT_JAN_2_2016);
   });
 });
+
+describe('incrementWeek() tests', () => {
+  it('increment week advances correctly', () => {
+    const weekdate = new WeekDate(SAT_SEPT_3_2016);
+    expect(weekdate.getStartOfRange()).toEqual(SUN_SEPT_4_2016);
+  });
+});
