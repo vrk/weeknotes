@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import DateArrow from './DateArrow'
 import DateUtil from './DateUtil'
-import WeekDate from './WeekDate'
 import './DateHeader.css';
 
 class DateHeader extends Component {
@@ -10,8 +9,7 @@ class DateHeader extends Component {
     super();
     this.state = {
       arrowsActive: false,
-      stickyActive: false,
-      week: new WeekDate()
+      stickyActive: false
     };
 
     this.onMouseOver = this.onMouseOver.bind(this);
@@ -55,13 +53,13 @@ class DateHeader extends Component {
 
   getDateRange() {
     const getStartDateString = () => {
-      const start = this.state.week.getStartOfRange();
+      const start = this.props.week.getStartOfRange();
       return DateUtil.getDayString(start) + ' ' +
         DateUtil.getMonthString(start) + ' ' + start.getDate();
     }
 
     const getEndDateString = () => {
-      const end = this.state.week.getEndOfRange();
+      const end = this.props.week.getEndOfRange();
       return DateUtil.getDayString(end) + ' ' +
         DateUtil.getMonthString(end) + ' ' + end.getDay() + ', ' +
         end.getFullYear();
@@ -98,19 +96,15 @@ class DateHeader extends Component {
   }
 
   incrementWeek() {
-    this.state.week.incrementWeek();
-    this.forceUpdate();
+    this.props.onUpdateWeek('increment');
   }
 
   decrementWeek() {
-    this.state.week.decrementWeek();
-    this.forceUpdate();
+    this.props.onUpdateWeek('decrement');
   }
 
   resetWeek() {
-    this.setState({
-      week: new WeekDate()
-    });
+    this.props.onUpdateWeek('reset');
   }
 }
 
