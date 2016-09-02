@@ -1,3 +1,5 @@
+import DateUtil from './DateUtil';
+
 class WeekDate {
   constructor(date) {
     this.date = date ? new Date(date) : new Date();
@@ -25,6 +27,13 @@ class WeekDate {
 
   decrementWeek() {
     this.date.setDate(this.date.getDate() - 7);
+  }
+
+  getId() {
+    const start = this.getStartOfRange();
+    return '' + start.getFullYear() +
+      DateUtil.zeroPaddedMonth(start) +
+      DateUtil.zeroPaddedDate(start);
   }
 }
 

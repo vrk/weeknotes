@@ -26,17 +26,5 @@ export default class DateArrow extends Component {
         return '  >';
     }
   }
-
-  onMouseOver() {
-    console.log('mouseover');
-  }
-
-  onMouseOut() {
-    console.log('mouseout');
-  }
-
-  onClick() {
-    console.log('click');
-  }
 }
 

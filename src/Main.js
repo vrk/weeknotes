@@ -7,18 +7,25 @@ import WeekNoteForm from './WeekNoteForm'
 class Main extends Component {
   constructor() {
     super();
+    let entries = {
+      '20160828': 'TODO:'
+    };
     this.state = {
-      week: new WeekDate()
+      week: new WeekDate(),
+      entries: entries
     };
 
     this.onUpdateWeek = this.onUpdateWeek.bind(this);
+    this.onUpdateEntry = this.onUpdateEntry.bind(this);
   }
   // Override
   render() {
+    const entry = this.state.entries[this.state.week.getId()] || '';
     return (
         <div id="main">
           <DateHeader week={this.state.week} onUpdateWeek={this.onUpdateWeek}/>
-          <WeekNoteForm />
+          <WeekNoteForm contents={entry}
+            onUpdateEntry={this.onUpdateEntry} />
         </div>
     );
   }
@@ -41,6 +48,11 @@ class Main extends Component {
       default:
         throw new Error('Unknown action to updateWeek: ' + action);
     }
+  }
+
+  onUpdateEntry(contents) {
+    this.state.entries[this.state.week.getId()] = contents;
+    this.forceUpdate();
   }
 }
 

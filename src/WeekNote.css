@@ -1,2 +1,12 @@
+#week-note div {
+  width: 90%;
+  height: 300px;
+}
 
+#week-note div:hover {
+  border: 1px solid whitesmoke;
+}
 
+#week-note p {
+  margin: 0;
+}

@@ -4,12 +4,13 @@ import WeekNote from './WeekNote'
 import WeekNoteEditor from './WeekNoteEditor'
 
 class WeekNoteForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       editorActive: false
     };
+    this.onUpdateText = this.onUpdateText.bind(this);
     this.handleFormBlur = this.handleFormBlur.bind(this);
     this.handleEditorActivate = this.handleEditorActivate.bind(this);
   }
@@ -19,12 +20,21 @@ class WeekNoteForm extends Component {
     return (
       <form onBlur={this.handleFormBlur}>
         <WeekNote
-          contents="TODO:"
+          contents={this.props.contents}
           active={!this.state.editorActive}
-          onActivate={this.handleEditorActivate} />
-        <WeekNoteEditor contents="TODO:" active={this.state.editorActive} />
+          onActivate={this.handleEditorActivate}
+        />
+        <WeekNoteEditor
+          contents={this.props.contents}
+          active={this.state.editorActive}
+          onUpdateText={this.onUpdateText}
+        />
       </form>
     );
+  }
+
+  onUpdateText(text) {
+    this.props.onUpdateEntry(text);
   }
 
   handleFormBlur() {
