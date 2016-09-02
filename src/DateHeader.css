@@ -3,3 +3,8 @@
   font-weight: bold;
 }
 
+.range {
+  display: inline-block;
+  text-align: center;
+  width: 10em;
+}

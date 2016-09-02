@@ -1,0 +1,9 @@
+.hidden {
+  visibility: hidden;
+}
+
+.arrow {
+  display: inline-block;
+  text-align: center;
+  width: 2em;
+}
