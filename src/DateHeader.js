@@ -61,7 +61,7 @@ class DateHeader extends Component {
     const getEndDateString = () => {
       const end = this.props.week.getEndOfRange();
       return DateUtil.getDayString(end) + ' ' +
-        DateUtil.getMonthString(end) + ' ' + end.getDay() + ', ' +
+        DateUtil.getMonthString(end) + ' ' + end.getDate() + ', ' +
         end.getFullYear();
     }
     return getStartDateString() + ' - ' + getEndDateString();
