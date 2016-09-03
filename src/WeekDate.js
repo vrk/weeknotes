@@ -21,6 +21,8 @@ class WeekDate {
     return newDate;
   }
 
+  // TODO(vrk): Change these two methods to nextWeek() and previousWeek()
+  // to fit with the whole immutability thing.
   incrementWeek() {
     this.date.setDate(this.date.getDate() + 7);
   }

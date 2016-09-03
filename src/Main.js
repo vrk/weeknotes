@@ -17,6 +17,7 @@ class Main extends Component {
     this.onUpdateWeek = this.onUpdateWeek.bind(this);
     this.onUpdateEntry = this.onUpdateEntry.bind(this);
   }
+
   // Override
   render() {
     const entry = this.state.entries[this.state.week.getId()] || '';
@@ -50,9 +51,10 @@ class Main extends Component {
   }
 
   onUpdateEntry(contents) {
-    this.state.entries[this.state.week.getId()] = contents;
+    let newEntry = {};
+    newEntry[this.state.week.getId()] = contents;
     this._saveEntriesToLocalStorage();
-    this.forceUpdate();
+    this.setState({ entries: Object.assign({}, this.state.entries, newEntry) });
   }
 
   _saveEntriesToLocalStorage() {
