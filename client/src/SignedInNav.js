@@ -24,7 +24,6 @@ class SignedInNav extends Component {
         </nav>
     );
   }
-
 }
 
 export default SignedInNav;

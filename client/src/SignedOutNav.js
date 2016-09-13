@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 
+import GoogleLoginLink from './GoogleLoginLink'
+
 import './Header.css';
 
 class SignedOutNav extends Component {
@@ -8,7 +10,9 @@ class SignedOutNav extends Component {
     return (
         <nav>
           <nav className="left">
-            <span className="link"><Link to="/login">Log in</Link></span>
+            <span className="link">
+              <GoogleLoginLink to="/">Log in</GoogleLoginLink>
+            </span>
           </nav>
           <nav className="right">
             <span className="link"><Link to="/signup">Sign up</Link></span>
