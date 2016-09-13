@@ -37,7 +37,6 @@ class Header extends Component {
       return <SignedInNav currentUser={state.currentUser}
                           onLogOutClick={this.onLogOutClick_}/>;
     }
-
     return <SignedOutNav />;
   }
 

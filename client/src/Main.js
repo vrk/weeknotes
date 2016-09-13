@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import EditorMain from './EditorMain'
 
 class Main extends Component {
-  constructor() {
-    super();
-  }
-
   // Override
   componentWillMount() {
     const { store } = this.context;

@@ -6,7 +6,9 @@ export default function loadGoogleApi(callback) {
 
   // Lolz awesome Google API login stuffs.
   script.onload = () => {
+    // eslint-disable-next-line
     gapi.load('auth2', () => {
+      // eslint-disable-next-line
       let auth = gapi.auth2.init({
         client_id: '813404364581-8dma5mlhtfu2stg75d3niotiup4h57lv.apps.googleusercontent.com',
         fetch_basic_profile: true,
