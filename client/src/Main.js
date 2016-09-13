@@ -7,7 +7,7 @@ class Main extends Component {
   componentWillMount() {
     const { store } = this.context;
     this.unsubscribe = store.subscribe(() =>
-        this.forceUpdate()
+      this.forceUpdate()
     );
   }
 

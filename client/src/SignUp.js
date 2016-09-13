@@ -15,7 +15,7 @@ class SignUp extends Component {
           </p>
           <GoogleLoginLink to="/">Sign up with Google</GoogleLoginLink>
           <hr/>
-          Or log in if you already have an account.
+          Or <GoogleLoginLink to="/">log in</GoogleLoginLink> if you already have an account.
         </div>
       </div>
     );

@@ -4,7 +4,7 @@ export default function loadGoogleApi(callback) {
   let script = document.createElement('script');
   document.body.appendChild(script);
 
-  // Lolz awesome Google API login stuffs.
+  // Lolz Google API login stuffs.
   script.onload = () => {
     // eslint-disable-next-line
     gapi.load('auth2', () => {
@@ -19,6 +19,7 @@ export default function loadGoogleApi(callback) {
       });
     });
   };
+
   script.src = 'https://apis.google.com/js/platform.js';
   script.async = true;
 }
