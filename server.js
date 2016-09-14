@@ -1,4 +1,5 @@
 const express = require('express');
+var path = require('path');
 
 const app = express();
 
@@ -20,7 +21,9 @@ app.get('/api/notes', (req, res) => {
   res.json(map);
 });
 
+console.log(path.join(__dirname, 'client/build'));
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.listen(app.get('port'), () => {
-  console.log(process.env.DEVICES_URI);
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
 });
