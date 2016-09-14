@@ -35,12 +35,12 @@ class GoogleLoginLink extends Component {
     let state = store.getState();
     let auth = state.auth;
     auth.signIn().then(() => {
+      debugger;
       let currentUser = auth.currentUser.get();
       store.dispatch({
         type: LOGIN,
         user: currentUser 
       });
-      //      browserHistory.push('/');
 		});
   }
 }
