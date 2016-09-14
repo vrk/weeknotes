@@ -3,10 +3,9 @@ var path = require('path');
 
 const app = express();
 
-app.set('port', (process.env.API_PORT || 3001));
+app.set('port', (process.env.PORT || 3001));
 
 app.get('/api/notes', (req, res) => {
-  console.log('here!');
   const param = req.query.q;
 
   if (!param) {
