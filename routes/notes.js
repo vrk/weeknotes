@@ -9,8 +9,9 @@ router.get('/notes', (req, res) => {
     let map = [];
     map[0] = user_info;
 
-    // Check if user exists in database
-    // Create new user if doesn't 
+    // Get user from DB -- creates one if it doesn't exist already.
+    // Get notes for this user.
+    // Format to JSON.
 
     res.json(map);
   });
