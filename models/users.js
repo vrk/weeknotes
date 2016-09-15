@@ -1,3 +1,5 @@
+var assert = require('assert');
+
 export class Users {
   constructor(db) {
     this.db = db;
