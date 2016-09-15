@@ -1,6 +1,7 @@
 const express = require('express');
 
 var notes = require('./routes/notes');
+var { Notes } = require('./models/notes');
 var { Users } = require('./models/users');
 
 const app = express();
@@ -12,6 +13,7 @@ let users = new Users(db);
 
 // Middleware to give requests access to the Users and Notes models.
 app.use((req, res, next) => {
+  req.notes = notes;
   req.users = users;
   next();
 });
