@@ -10,8 +10,18 @@ var router = express.Router();
 
 // Log in user and retrieve notes.
 router.get('/login', (req, res) => {
+  const id_token = req.query.u;
+
+  if (!id_token) {
+    res.json({
+      success: false,
+      error: 'Missing required parameter',
+    });
+    return;
+  }
+
   co(function* () {
-    var user_info = yield validateToken('fake_token');
+    var user_info = yield validateToken(id_token);
     var db = yield getDatabase();
     let users = new Users(db);
     let notes_model = new Notes(db);
@@ -19,6 +29,7 @@ router.get('/login', (req, res) => {
     let notes = yield notes_model.getNotesByIds(user_record.value.notes);
     db.close();
     return {
+      success: true,
       user_info: user_record.value,
       notes: notes
     };
@@ -26,8 +37,8 @@ router.get('/login', (req, res) => {
     res.json([value]);
   },
   (err) => {
-    console.error(err.stack);
     res.json([{
+      success: false,
       error: err.stack
     }]);
   });
@@ -35,22 +46,31 @@ router.get('/login', (req, res) => {
 
 // Save note to the server.
 router.get('/notes', (req, res) => {
+  const id_token = req.query.u;
+  const contents = req.query.c || '';
+  const week_id = req.query.d;
+
+  if (!id_token || !week_id) {
+    res.json({
+      success: false,
+      error: 'Missing required parameter',
+    });
+    return;
+  }
+
   co(function* () {
-    var user_info = yield validateToken('fake_token');
+    var user_info = yield validateToken(id_token);
     var db = yield getDatabase();
     let users = new Users(db);
-    console.log('hay');
     var user_record = yield users.getUser(user_info);
-    console.log(user_record);
+
     let notes = new Notes(db);
     var user_id = user_record.value._id;
-    yield notes.saveNote(user_id, '20160911', 'haaay');
-    yield notes.saveNote(user_id, '20160911', 'overwrite');
-    yield notes.saveNote(user_id, '20160918', 'new');
+    yield notes.saveNote(user_id, week_id, contents);
 
     db.close();
     return {
-      result: 'ok'
+      success: true
     };
   }).then((value) => {
     res.json([value]);
@@ -58,6 +78,7 @@ router.get('/notes', (req, res) => {
   (err) => {
     console.error(err.stack);
     res.json([{
+      success: false,
       error: err.stack
     }]);
   });
