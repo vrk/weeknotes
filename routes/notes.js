@@ -9,33 +9,27 @@ var router = express.Router();
 
 
 router.get('/notes', (req, res) => {
-  validateToken('fake_token', (user_info) => {
-    console.log(user_info);
-    let map = [];
-    map[0] = {};
-    res.json(map);
-  });
-    /*
+  console.log('yos');
   validateToken('fake_token', (user_info) => {
     let map = [];
-    map[0] = {
-      user_info: user_info,
-      notes: notes
-    };
+    let notes = [];
 
     getDatabase().then((db) => {
       let users = new Users(db);
-      users.getUser(user_info.gmail_id,
-        (records) => {
-          console.log(docs);
+      users.getUser(user_info).then((records) => {
+          console.log('heaaah');
+          console.log(records);
+          db.close();
+
+          map[0] = {
+            user_info: user_info,
+            notes: 'notes' 
+          };
+          res.json(map);
         }
       );
-
-      db.close();
-      res.json(map);
     });
   });
-  */
 });
 
 router.post('/notes', (req, res) => {
