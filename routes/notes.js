@@ -9,20 +9,17 @@ var router = express.Router();
 
 
 router.get('/notes', (req, res) => {
-  console.log('yos');
   validateToken('fake_token', (user_info) => {
     let map = [];
     let notes = [];
 
     getDatabase().then((db) => {
       let users = new Users(db);
-      users.getUser(user_info).then((records) => {
-          console.log('heaaah');
-          console.log(records);
+      users.getUser(user_info).then((user_record) => {
           db.close();
 
           map[0] = {
-            user_info: user_info,
+            user_info: user_record.value,
             notes: 'notes' 
           };
           res.json(map);
