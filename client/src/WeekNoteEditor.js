@@ -20,7 +20,8 @@ class WeekNoteEditor extends Component {
   }
 
   handleTextChange(e) {
-    this.props.onUpdateText(e.target.value);
+    var value = e.target.value;
+    this.props.onUpdateText(value);
   }
 }
 

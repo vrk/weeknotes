@@ -1,4 +1,4 @@
-import { OAUTH_LOADED, LOGIN, LOGOUT } from './WeekNoteActions'
+import { OAUTH_LOADED, LOGIN, LOGOUT, LOCAL_NOTE_UPSERT } from './WeekNoteActions'
 
 const initialState = {
   // Whether the week note editor is active.
@@ -31,6 +31,13 @@ export default function rootReducer(state = initialState, action) {
     case LOGOUT:
       return Object.assign({}, state, {
         currentUser: null
+      });
+    case LOCAL_NOTE_UPSERT:
+      let notes = Object.assign({}, state.notes);
+      let note = action.note;
+      notes[note.week_id] = note.contents;
+      return Object.assign({}, state, {
+        notes: notes 
       });
     default:
       return state;

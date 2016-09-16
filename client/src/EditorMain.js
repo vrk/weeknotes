@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import DateHeader from './DateHeader'
 import WeekDate from './WeekDate'
 import WeekNoteForm from './WeekNoteForm'
+import { LOCAL_NOTE_UPSERT } from './WeekNoteActions'
 
 class EditorMain extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class EditorMain extends Component {
       week: new WeekDate()
     };
 
+    this.timerId = null;
     this.onUpdateWeek = this.onUpdateWeek.bind(this);
     this.onUpdateEntry = this.onUpdateEntry.bind(this);
   }
@@ -49,10 +51,12 @@ class EditorMain extends Component {
   onUpdateWeek(action) {
     switch(action) {
       case 'increment':
+        // TODO(vrk): fix this so I don't have to use forceUpdate
         this.state.week.incrementWeek();
         this.forceUpdate();
         break;
       case 'decrement':
+        // TODO(vrk): fix this so I don't have to use forceUpdate
         this.state.week.decrementWeek();
         this.forceUpdate();
         break;
@@ -67,24 +71,29 @@ class EditorMain extends Component {
   }
 
   onUpdateEntry(contents) {
-      /*
+    console.log('updating entry');
+    let newEntry = {
+      week_id: this.state.week.getId(),
+      contents: contents
+    };
 
-    let newEntry = {};
-    newEntry[this.state.week.getId()] = contents;
-     this._saveEntriesToLocalStorage();
-    this.setState({ entries: Object.assign({}, this.state.entries, newEntry) });
-    */
-  }
-  /*
-  _saveEntriesToLocalStorage() {
-    localStorage.setItem(
-      '__WEEK_NOTES_ENTRIES__', JSON.stringify(this.state.entries));
+    const { store } = this.context;
+    store.dispatch({
+      type: LOCAL_NOTE_UPSERT,
+      note: newEntry 
+    });
+
+    this.saveEntryToServer(newEntry);
   }
 
-  _loadEntriesFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('__WEEK_NOTES_ENTRIES__'));
+  saveEntryToServer(newEntry) {
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    this.timerId = setTimeout(() => {
+      console.log('save to server');
+    }, 750);
   }
-  */
 }
 EditorMain.contextTypes = {
   store: React.PropTypes.object

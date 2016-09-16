@@ -4,18 +4,6 @@ import Remarkable from 'remarkable';
 import './WeekNote.css';
 
 class WeekNote extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      // Represents whether or not the component is visible and activated.
-      active: true
-    };
-
-    // Bind event handlers.
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   // Override
   render() {
     if (!this.props.active) return null;
@@ -33,11 +21,6 @@ class WeekNote extends Component {
     var md = new Remarkable();
     var rawMarkup = md.render(this.props.contents);
     return { __html: rawMarkup };
-  }
-
-  // On-click handler for the body of the note.
-  handleClick() {
-    console.log("clickeddd");
   }
 }
 
