@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser')
 var co = require('co');
 
 var { validateToken } = require('../lib/auth');
@@ -8,9 +9,11 @@ var { Users } = require('../models/users');
 
 var router = express.Router();
 
+var jsonParser = bodyParser.json()
+
 // Log in user and retrieve notes.
-router.get('/login', (req, res) => {
-  const id_token = req.query.u;
+router.post('/login', jsonParser, (req, res) => {
+  const id_token = req.body.id_token;
 
   if (!id_token) {
     res.json({

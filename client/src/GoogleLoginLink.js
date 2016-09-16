@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router'
 
 import { LOGIN } from './WeekNoteActions'
+import fetchUserNotes from './Requests'
 
 import './SignUp.css';
 
@@ -14,9 +15,9 @@ class GoogleLoginLink extends Component {
   // Override
   componentWillMount() {
     const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-        this.forceUpdate()
-    );
+    this.unsubscribe = store.subscribe(() => {
+        this.forceUpdate();
+    });
   }
 
   // Override
@@ -35,11 +36,15 @@ class GoogleLoginLink extends Component {
     let state = store.getState();
     let auth = state.auth;
     auth.signIn().then(() => {
-      debugger;
       let currentUser = auth.currentUser.get();
-      store.dispatch({
-        type: LOGIN,
-        user: currentUser 
+      let auth_response = currentUser.getAuthResponse();
+      let id_token = auth_response.id_token;
+      fetchUserNotes(id_token).then((response) => {
+        console.log(response);
+        store.dispatch({
+          type: LOGIN,
+          user: currentUser 
+        });
       });
 		});
   }
