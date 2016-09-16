@@ -1,16 +1,11 @@
 var co = require('co');
 
-var { WeekDate } = require('../lib/WeekDate');
-
 export class Notes {
   constructor(db) {
     this.db = db;
   }
 
-  saveNote(user_id, date, contents) {
-    var week_date = new WeekDate(date); 
-    var week_id = week_date.getId();
-
+  saveNote(user_id, week_id, contents) {
     var query = {'week_id': week_id};
     var doc = {
       '$set': {

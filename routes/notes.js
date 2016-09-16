@@ -8,6 +8,7 @@ var { Users } = require('../models/users');
 
 var router = express.Router();
 
+// Log in user and retrieve notes.
 router.get('/login', (req, res) => {
   co(function* () {
     var user_info = yield validateToken('fake_token');
@@ -32,6 +33,7 @@ router.get('/login', (req, res) => {
   });
 });
 
+// Save note to the server.
 router.get('/notes', (req, res) => {
   co(function* () {
     var user_info = yield validateToken('fake_token');
@@ -42,13 +44,13 @@ router.get('/notes', (req, res) => {
     console.log(user_record);
     let notes = new Notes(db);
     var user_id = user_record.value._id;
-    yield notes.saveNote(user_id, new Date(), 'haaay');
-    yield notes.saveNote(user_id, new Date(), 'overwrite');
-    yield notes.saveNote(user_id, new Date('Sep 30, 2016'), 'new');
+    yield notes.saveNote(user_id, '20160911', 'haaay');
+    yield notes.saveNote(user_id, '20160911', 'overwrite');
+    yield notes.saveNote(user_id, '20160918', 'new');
 
     db.close();
     return {
-      notes: 'NOTS' 
+      result: 'ok'
     };
   }).then((value) => {
     res.json([value]);
