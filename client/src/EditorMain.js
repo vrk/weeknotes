@@ -7,11 +7,10 @@ import WeekNoteForm from './WeekNoteForm'
 class EditorMain extends Component {
   constructor() {
     super();
-    let entries = this._loadEntriesFromLocalStorage();
+    //    let entries = this._loadEntriesFromLocalStorage();
 
     this.state = {
-      week: new WeekDate(),
-      entries: entries || {}
+      week: new WeekDate()
     };
 
     this.onUpdateWeek = this.onUpdateWeek.bind(this);
@@ -19,8 +18,25 @@ class EditorMain extends Component {
   }
 
   // Override
+  componentWillMount() {
+    const { store } = this.context;
+    this.unsubscribe = store.subscribe(() =>
+        this.forceUpdate()
+    );
+  }
+
+  // Override
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  // Override
   render() {
-    const entry = this.state.entries[this.state.week.getId()] || '';
+    const { store } = this.context;
+    let state = store.getState();
+    let entries = state.notes || {};
+
+    const entry = entries[this.state.week.getId()] || '';
     return (
         <div id="main">
           <DateHeader week={this.state.week} onUpdateWeek={this.onUpdateWeek}/>
@@ -51,12 +67,15 @@ class EditorMain extends Component {
   }
 
   onUpdateEntry(contents) {
+      /*
+
     let newEntry = {};
     newEntry[this.state.week.getId()] = contents;
-    this._saveEntriesToLocalStorage();
+     this._saveEntriesToLocalStorage();
     this.setState({ entries: Object.assign({}, this.state.entries, newEntry) });
+    */
   }
-
+  /*
   _saveEntriesToLocalStorage() {
     localStorage.setItem(
       '__WEEK_NOTES_ENTRIES__', JSON.stringify(this.state.entries));
@@ -65,7 +84,11 @@ class EditorMain extends Component {
   _loadEntriesFromLocalStorage() {
     return JSON.parse(localStorage.getItem('__WEEK_NOTES_ENTRIES__'));
   }
+  */
 }
+EditorMain.contextTypes = {
+  store: React.PropTypes.object
+};
 
 export default EditorMain;
 

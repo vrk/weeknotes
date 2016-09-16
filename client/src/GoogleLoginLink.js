@@ -37,13 +37,11 @@ class GoogleLoginLink extends Component {
     let auth = state.auth;
     auth.signIn().then(() => {
       let currentUser = auth.currentUser.get();
-      let auth_response = currentUser.getAuthResponse();
-      let id_token = auth_response.id_token;
-      fetchUserNotes(id_token).then((response) => {
-        console.log(response);
+      fetchUserNotes(currentUser).then((response) => {
         store.dispatch({
           type: LOGIN,
-          user: currentUser 
+          user: currentUser,
+          notes: response[0].notes
         });
       });
 		});

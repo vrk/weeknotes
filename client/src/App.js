@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from './Header'
+import fetchUserNotes from './Requests'
 import loadGoogleApi from './GoogleAuthApi'
 import { OAUTH_LOADED } from './WeekNoteActions'
 
@@ -41,14 +42,26 @@ class App extends Component {
 
   onGoogleApiLoaded_(auth) {
     let currentUser = null;
+    const { store } = this.context;
+
     if (auth.isSignedIn.get()) {
       currentUser = auth.currentUser.get();
+      fetchUserNotes(currentUser).then((response) => {
+        store.dispatch({
+          type: OAUTH_LOADED,
+          auth: auth,
+          user: currentUser,
+          notes: response[0].notes
+        });
+      });
+      return; 
     }
-    const { store } = this.context;
+
     store.dispatch({
       type: OAUTH_LOADED,
       auth: auth,
-      user: currentUser 
+      user: currentUser,
+      notes: {}
     });
   }
 }
