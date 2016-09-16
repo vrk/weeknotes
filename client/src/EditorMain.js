@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import DateHeader from './DateHeader'
+import Requests from './Requests'
 import WeekDate from './WeekDate'
 import WeekNoteForm from './WeekNoteForm'
 import { LOCAL_NOTE_UPSERT } from './WeekNoteActions'
@@ -8,7 +9,6 @@ import { LOCAL_NOTE_UPSERT } from './WeekNoteActions'
 class EditorMain extends Component {
   constructor() {
     super();
-    //    let entries = this._loadEntriesFromLocalStorage();
 
     this.state = {
       week: new WeekDate()
@@ -90,8 +90,16 @@ class EditorMain extends Component {
     if (this.timerId) {
       clearTimeout(this.timerId);
     }
+    const { store } = this.context;
+    let state = store.getState();
+    let auth = state.auth;
+    let currentUser = auth.currentUser.get();
+    let note = newEntry;
     this.timerId = setTimeout(() => {
       console.log('save to server');
+      Requests.saveUserNote(currentUser, note).then((response) => {
+        console.log(response);
+      });
     }, 750);
   }
 }

@@ -48,10 +48,10 @@ router.post('/login', jsonParser, (req, res) => {
 });
 
 // Save note to the server.
-router.get('/notes', (req, res) => {
-  const id_token = req.query.u;
-  const contents = req.query.c || '';
-  const week_id = req.query.d;
+router.post('/notes', jsonParser, (req, res) => {
+  const id_token = req.body.id_token;
+  const contents = req.body.contents || '';
+  const week_id = req.body.week_id;
 
   if (!id_token || !week_id) {
     res.json({
