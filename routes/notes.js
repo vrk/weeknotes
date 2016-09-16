@@ -1,4 +1,5 @@
 var express = require('express');
+var co = require('co');
 
 var { validateToken } = require('../lib/auth');
 var { getDatabase } = require('../lib/db');
@@ -7,24 +8,26 @@ var { Users } = require('../models/users');
 
 var router = express.Router();
 
-
 router.get('/notes', (req, res) => {
-  validateToken('fake_token').then((user_info) => {
-
-    getDatabase().then((db) => {
-      let users = new Users(db);
-      users.getUser(user_info).then((user_record) => {
-          db.close();
-
-          let notes = [];
-          let map = [{
-            user_info: user_record.value,
-            notes: 'notes' 
-          }];
-          res.json(map);
-        }
-      );
-    });
+  co(function* () {
+    var user_info = yield validateToken('fake_token');
+    var db = yield getDatabase();
+    let users = new Users(db);
+    var user_record = yield users.getUser(user_info);
+    db.close();
+    let notes = [];
+    return {
+      user_info: user_record.value,
+      notes: 'NOTS' 
+    };
+  }).then((value) => {
+    res.json([value]);
+  },
+  (err) => {
+    console.error(err.stack);
+    res.json([{
+      error: err.stack
+    }]);
   });
 });
 
