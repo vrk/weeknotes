@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router'
 
 import { LOGIN } from './WeekNoteActions'
-import fetchUserNotes from './Requests'
+import Requests from './Requests'
 
 import './SignUp.css';
 
@@ -37,7 +37,7 @@ class GoogleLoginLink extends Component {
     let auth = state.auth;
     auth.signIn().then(() => {
       let currentUser = auth.currentUser.get();
-      fetchUserNotes(currentUser).then((response) => {
+      Requests.fetchUserNotes(currentUser).then((response) => {
         store.dispatch({
           type: LOGIN,
           user: currentUser,
