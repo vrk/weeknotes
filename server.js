@@ -19,4 +19,4 @@ if (process.env.BUILD_WEBPACK === 'true') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
-app.listen(app.get('port'), ());
+app.listen(app.get('port'));
