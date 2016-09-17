@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import Header from './header/Header'
-import Requests from '../libs/Requests'
-import loadGoogleApi from '../libs/GoogleAuthApi'
+import Requests from '../lib/Requests'
+import loadGoogleApi from '../lib/GoogleAuthApi'
 import { OAUTH_LOADED } from '../actions/WeekNoteActions'
 
 import './App.css';

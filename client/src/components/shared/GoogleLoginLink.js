@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router'
 
 import { LOGIN } from '../../actions/WeekNoteActions'
-import Requests from '../../libs/Requests'
+import Requests from '../../lib/Requests'
 
 class GoogleLoginLink extends Component {
   constructor() {

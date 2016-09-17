@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import DateHeader from './DateHeader'
-import Requests from '../../libs/Requests'
-import WeekDate from '../../libs/WeekDate'
+import Requests from '../../lib/Requests'
+import WeekDate from '../../lib/WeekDate'
 import WeekNoteForm from './WeekNoteForm'
 import { LOCAL_NOTE_UPSERT } from '../../actions/WeekNoteActions'
 

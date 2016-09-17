@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import DateArrow from './DateArrow'
-import DateUtil from '../../libs/DateUtil'
+import DateUtil from '../../lib/DateUtil'
 import './DateHeader.css';
 
 class DateHeader extends Component {
