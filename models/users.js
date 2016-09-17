@@ -12,8 +12,7 @@ export class Users {
     var doc = {
       $set: {
         'gmail_id': user_info.gmail_id,
-        'email': user_info.email,
-        'display_name': user_info.display_name 
+        'email': user_info.email
       }
     };
     var options = {
