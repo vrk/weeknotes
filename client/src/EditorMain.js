@@ -71,7 +71,6 @@ class EditorMain extends Component {
   }
 
   onUpdateEntry(contents) {
-    console.log('updating entry');
     let newEntry = {
       week_id: this.state.week.getId(),
       contents: contents
@@ -96,10 +95,7 @@ class EditorMain extends Component {
     let currentUser = auth.currentUser.get();
     let note = newEntry;
     this.timerId = setTimeout(() => {
-      console.log('save to server');
-      Requests.saveUserNote(currentUser, note).then((response) => {
-        console.log(response);
-      });
+      Requests.saveUserNote(currentUser, note);
     }, 750);
   }
 }
