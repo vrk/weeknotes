@@ -8,6 +8,7 @@ class Requests {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
+        mode: 'cors',
         body: JSON.stringify({
           id_token: id_token
         })
@@ -24,6 +25,7 @@ class Requests {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
+        mode: 'cors',
         body: JSON.stringify({
           id_token: id_token,
           week_id: note.week_id,
