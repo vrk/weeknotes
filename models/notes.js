@@ -36,6 +36,4 @@ export class Notes {
     var notes_db = this.db.collection('notes');
     return notes_db.find({_id: { $in : note_ids } } ).toArray();
   }
-
-
 };

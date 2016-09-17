@@ -51,7 +51,7 @@ class App extends Component {
           type: OAUTH_LOADED,
           auth: auth,
           user: currentUser,
-          notes: response[0].notes
+          notes: response[0].notes || []
         });
       });
       return; 
@@ -61,7 +61,7 @@ class App extends Component {
       type: OAUTH_LOADED,
       auth: auth,
       user: currentUser,
-      notes: {}
+      notes: []
     });
   }
 }

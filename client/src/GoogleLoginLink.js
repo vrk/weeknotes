@@ -41,7 +41,7 @@ class GoogleLoginLink extends Component {
         store.dispatch({
           type: LOGIN,
           user: currentUser,
-          notes: response[0].notes
+          notes: response[0].notes || []
         });
       });
 		});
