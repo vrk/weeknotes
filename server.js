@@ -17,12 +17,12 @@ if (app.get('env') === 'development') {
   // Prod-only.
   // TODO(vrk): Should probably move this to a proper middleware file.
   app.get('*', (req, res, next) => {
-		if (req.headers['x-forwarded-proto'] !== 'https') {
-			res.redirect('https://' + req.url);
-		} else {
-			next();
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      res.redirect(['https://', req.get('Host'), req.url].join(''));
+    } else {
+      next();
     }
-	});
+  });
 }
 
 app.set('port', (process.env.PORT || 3100));
