@@ -4,12 +4,18 @@ import Remarkable from 'remarkable';
 import './WeekNote.css';
 
 class WeekNote extends Component {
+  constructor() {
+    super();
+
+    this._onClick = this._onClick.bind(this);
+  }
+
   // Override
   render() {
     if (!this.props.active) return null;
 
     return (
-      <div id="week-note" onClick={this.props.onActivate}>
+      <div id="week-note" onClick={this._onClick}>
         <div dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
     );
@@ -21,6 +27,16 @@ class WeekNote extends Component {
     var md = new Remarkable();
     var rawMarkup = md.render(this.props.contents);
     return { __html: rawMarkup };
+  }
+
+  _onClick(evt) {
+    var target = evt.target;
+
+    // Ignore click events if it's a link.
+    if (target.tagName.toLowerCase() === 'a') {
+      return;
+    }
+    this.props.onActivate(evt);
   }
 }
 
