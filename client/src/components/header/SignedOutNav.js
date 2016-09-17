@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 
-import GoogleLoginLink from './GoogleLoginLink'
+import GoogleLoginLink from '../shared/GoogleLoginLink'
 
 import './Header.css';
 

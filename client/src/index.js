@@ -4,10 +4,10 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 
-import rootReducer from './AppReducers'
-import App from './App';
-import Main from './Main';
-import SignUp from './SignUp'
+import rootReducer from './reducers/AppReducers'
+import App from './components/App';
+import Main from './components/editor/Main';
+import SignUp from './components/signup/SignUp'
 
 import './index.css';
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 import DateHeader from './DateHeader'
-import Requests from './Requests'
-import WeekDate from './WeekDate'
+import Requests from '../../libs/Requests'
+import WeekDate from '../../libs/WeekDate'
 import WeekNoteForm from './WeekNoteForm'
-import { LOCAL_NOTE_UPSERT } from './WeekNoteActions'
+import { LOCAL_NOTE_UPSERT } from '../../actions/WeekNoteActions'
 
 class EditorMain extends Component {
   constructor() {

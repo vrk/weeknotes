@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Header from './Header'
-import Requests from './Requests'
-import loadGoogleApi from './GoogleAuthApi'
-import { OAUTH_LOADED } from './WeekNoteActions'
+import Header from './header/Header'
+import Requests from '../libs/Requests'
+import loadGoogleApi from '../libs/GoogleAuthApi'
+import { OAUTH_LOADED } from '../actions/WeekNoteActions'
 
 import './App.css';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 
-import { LOGOUT } from './WeekNoteActions'
+import { LOGOUT } from '../../actions/WeekNoteActions'
 import SignedInNav from './SignedInNav';
 import SignedOutNav from './SignedOutNav';
 import './Header.css';

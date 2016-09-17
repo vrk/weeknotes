@@ -1,4 +1,4 @@
-import { OAUTH_LOADED, LOGIN, LOGOUT, LOCAL_NOTE_UPSERT } from './WeekNoteActions'
+import { OAUTH_LOADED, LOGIN, LOGOUT, LOCAL_NOTE_UPSERT } from '../actions/WeekNoteActions'
 
 const initialState = {
   // Whether the week note editor is active.

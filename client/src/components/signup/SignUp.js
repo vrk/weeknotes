@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import GoogleLoginLink from './GoogleLoginLink'
+import GoogleLoginLink from '../shared/GoogleLoginLink'
 
 import './SignUp.css';
 
