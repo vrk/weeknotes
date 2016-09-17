@@ -3,24 +3,12 @@ import { Link } from 'react-router'
 
 import { LOGIN } from '../../actions/WeekNoteActions'
 import Requests from '../../lib/Requests'
+import subscribeToStore from '../../lib/Subscribe'
 
 class GoogleLoginLink extends Component {
   constructor() {
     super();
     this.onSignUp_ = this.onSignUp_.bind(this);
-  }
-
-  // Override
-  componentWillMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() => {
-        this.forceUpdate();
-    });
-  }
-
-  // Override
-  componentWillUnmount() {
-    this.unsubscribe();
   }
 
   render() {
@@ -45,8 +33,10 @@ class GoogleLoginLink extends Component {
 		});
   }
 }
+
 GoogleLoginLink.contextTypes = {
   store: React.PropTypes.object
 };
 
+GoogleLoginLink = subscribeToStore(GoogleLoginLink);
 export default GoogleLoginLink;

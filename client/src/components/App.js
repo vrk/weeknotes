@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from './header/Header'
 import Requests from '../lib/Requests'
-import subscribe from '../lib/Subscribe'
+import subscribeToStore from '../lib/Subscribe'
 import loadGoogleApi from '../lib/GoogleAuthApi'
 import { OAUTH_LOADED } from '../actions/WeekNoteActions'
 
@@ -58,6 +58,6 @@ App.contextTypes = {
   store: React.PropTypes.object
 };
 
-App = subscribe(App);
+App = subscribeToStore(App);
 export default App;
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { LOGOUT } from '../../actions/WeekNoteActions'
 import SignedInNav from './SignedInNav';
 import SignedOutNav from './SignedOutNav';
+import subscribeToStore from '../../lib/Subscribe'
 import './Header.css';
 
 class Header extends Component {
@@ -11,19 +12,6 @@ class Header extends Component {
     super();
 
     this.onLogOutClick_ = this.onLogOutClick_.bind(this);
-  }
-
-  // Override
-  componentWillMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-        this.forceUpdate()
-    );
-  }
-
-  // Override
-  componentWillUnmount() {
-    this.unsubscribe();
   }
 
   getNav_() {
@@ -62,8 +50,10 @@ class Header extends Component {
     });
   }
 }
+
 Header.contextTypes = {
   store: React.PropTypes.object
 };
 
+Header = subscribeToStore(Header);
 export default Header;

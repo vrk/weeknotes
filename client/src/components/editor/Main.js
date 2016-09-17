@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 
 import EditorMain from './EditorMain'
+import subscribeToStore from '../../lib/Subscribe'
 
 class Main extends Component {
-  // Override
-  componentWillMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-      this.forceUpdate()
-    );
-  }
-
-  // Override
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
   // Override
   render() {
     const { store } = this.context;
@@ -34,5 +22,6 @@ Main.contextTypes = {
   store: React.PropTypes.object
 };
 
+Main = subscribeToStore(Main);
 export default Main;
 

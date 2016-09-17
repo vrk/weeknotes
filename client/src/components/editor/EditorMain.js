@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import DateHeader from './DateHeader'
 import Requests from '../../lib/Requests'
+import subscribeToStore from '../../lib/Subscribe'
 import WeekDate from '../../lib/WeekDate'
 import WeekNoteForm from './WeekNoteForm'
 import { LOCAL_NOTE_UPSERT } from '../../actions/WeekNoteActions'
@@ -17,19 +18,6 @@ class EditorMain extends Component {
     this.timerId = null;
     this.onUpdateWeek = this.onUpdateWeek.bind(this);
     this.onUpdateEntry = this.onUpdateEntry.bind(this);
-  }
-
-  // Override
-  componentWillMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-        this.forceUpdate()
-    );
-  }
-
-  // Override
-  componentWillUnmount() {
-    this.unsubscribe();
   }
 
   // Override
@@ -99,9 +87,11 @@ class EditorMain extends Component {
     }, 750);
   }
 }
+
 EditorMain.contextTypes = {
   store: React.PropTypes.object
 };
 
+EditorMain = subscribeToStore(EditorMain);
 export default EditorMain;
 
