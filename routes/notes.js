@@ -37,7 +37,6 @@ router.post('/login', jsonParser, (req, res) => {
       notes: notes
     };
   }).then((value) => {
-    console.log(value);
     res.json([value]);
   },
   (err) => {
@@ -80,7 +79,6 @@ router.post('/notes', jsonParser, (req, res) => {
     res.json([value]);
   },
   (err) => {
-    console.error(err.stack);
     res.json([{
       success: false,
       error: err.stack
