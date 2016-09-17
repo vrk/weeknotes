@@ -1,4 +1,6 @@
 #!/bin/bash
-cd client
-npm run build
+if $BUILD_WEBPACK; then
+  cd client
+  npm run build
+fi  
 
