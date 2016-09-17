@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
 const { MongoClient } = require('mongodb');
+const dotenv = require('dotenv');
 
 var notes_router = require('./routes/notes');
 
+dotenv.config();
 const app = express();
 
 app.set('port', (process.env.PORT || 3100));
