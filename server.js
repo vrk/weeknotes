@@ -11,7 +11,6 @@ if (app.get('env') === 'development') {
   dotenv.config();
 }
 
-
 app.set('port', (process.env.PORT || 3100));
 
 app.use('/api', notes_router);
