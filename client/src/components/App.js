@@ -14,7 +14,6 @@ class App extends Component {
     this.onGoogleApiLoaded_ = this.onGoogleApiLoaded_.bind(this);
   }
 
-  // Override
   componentWillMount() {
     const { store } = this.context;
     this.unsubscribe = store.subscribe(() =>
@@ -22,7 +21,6 @@ class App extends Component {
     );
   }
 
-  // Override
   componentWillUnmount() {
     this.unsubscribe();
   }
