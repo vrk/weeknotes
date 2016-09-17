@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Header from './header/Header'
 import Requests from '../lib/Requests'
+import subscribe from '../lib/Subscribe'
 import loadGoogleApi from '../lib/GoogleAuthApi'
 import { OAUTH_LOADED } from '../actions/WeekNoteActions'
 
@@ -12,17 +13,6 @@ class App extends Component {
     super();
 
     this.onGoogleApiLoaded_ = this.onGoogleApiLoaded_.bind(this);
-  }
-
-  componentWillMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-        this.forceUpdate()
-    );
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
   }
 
   componentDidMount() {
@@ -68,5 +58,6 @@ App.contextTypes = {
   store: React.PropTypes.object
 };
 
+App = subscribe(App);
 export default App;
 
