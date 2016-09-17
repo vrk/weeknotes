@@ -11,6 +11,7 @@ if (app.get('env') === 'development') {
   // TODO(vrk): This seems like the wrong thing to do. There's probably some way I
   // can get the same behavior without having to add this code, e.g. using some
   // command-line flags in the "npm run" script.
+  // https://github.com/vrk/weeknotes/issues/32
   const dotenv = require('dotenv');
   dotenv.config();
 } else {
