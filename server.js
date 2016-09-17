@@ -4,12 +4,13 @@ const { MongoClient } = require('mongodb');
 
 var notes_router = require('./routes/notes');
 
-if ( app.get('env') === 'development' ) {
+const app = express();
+
+if (app.get('env') === 'development') {
   const dotenv = require('dotenv');
   dotenv.config();
 }
 
-const app = express();
 
 app.set('port', (process.env.PORT || 3100));
 
@@ -20,7 +21,6 @@ if (process.env.BUILD_WEBPACK === 'true') {
   console.log(typeof process.env.BUILD_WEBPACK);
   app.use(express.static(path.join(__dirname, 'client/build')));
 }
-
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
