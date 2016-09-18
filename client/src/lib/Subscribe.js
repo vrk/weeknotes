@@ -1,7 +1,11 @@
+/* @flow */
+
 import React, { Component } from 'react';
 
-export default function subscribe(ChildComponent) {
+export default function subscribe<Config>(ChildComponent: ReactClass<Config>) {
   class Subscriber extends Component {
+    unsubscribe: () => void;
+
     componentWillMount() {
       const { store } = this.context;
       this.unsubscribe = store.subscribe(() =>

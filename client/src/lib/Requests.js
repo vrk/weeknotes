@@ -1,3 +1,5 @@
+/* @flow */
+
 class Requests {
   static fetchUserNotes(currentUser) {
       let auth_response = currentUser.getAuthResponse();
@@ -40,8 +42,6 @@ class Requests {
       return response;
     } else {
       const error = new Error(`HTTP Error ${response.statusText}`);
-      error.status = response.statusText;
-      error.response = response;
       throw error;
     }
   }

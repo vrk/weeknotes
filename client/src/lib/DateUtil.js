@@ -1,3 +1,5 @@
+/* @flow */
+
 class DateUtil {
 
   static getMonthString(date) {
