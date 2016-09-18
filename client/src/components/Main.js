@@ -15,9 +15,7 @@ class Main extends Component {
     if (!state.auth || !state.currentUser)
       return null;
 
-    return (
-      <EditorMain />
-    );
+    return <EditorMain />;
   }
 }
 

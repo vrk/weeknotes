@@ -11,7 +11,7 @@ class SignUp extends Component {
     return (
       <div id="main">
         <div id="sign-up-container">
-          <h1>sign&middot;up</h1>
+          <h1 className="static-header">sign&middot;up</h1>
           <hr/>
           <p>
             Sign up with your Gmail account! Weeknotes won't share your email, spam you or your contacts, or otherwise do dirtbag things. Promise!

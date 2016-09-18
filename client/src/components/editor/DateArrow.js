@@ -21,11 +21,11 @@ export default class DateArrow extends Component {
   getArrowBody() {
     switch (this.props.direction) {
       case 'left':
-        return '<  ';
+        return '<';
       case 'right':
-        return '  >';
+        return '>';
       default:
-        return '  >';
+        return '>';
     }
   }
 }

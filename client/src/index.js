@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 
 import rootReducer from './reducers/AppReducers'
+import About from './components/info/About';
 import App from './components/App';
 import Main from './components/Main';
 import SignUp from './components/signup/SignUp'
@@ -25,6 +26,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Main} />
+        <Route path="/about" component={About}/>
         <Route path="/signup" component={SignUp}/>
       </Route>
     </Router>
