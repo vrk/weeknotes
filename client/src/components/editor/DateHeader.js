@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 
 import DateArrow from './DateArrow'
@@ -5,6 +7,19 @@ import DateUtil from '../../lib/DateUtil'
 import './DateHeader.css';
 
 class DateHeader extends Component {
+  state: {
+    arrowsActive: boolean,
+    stickyActive: boolean
+  };
+
+  onMouseOver: () => void;
+  onMouseOut: () => void;
+  onClick: () => void;
+  onBlur: () => void;
+  incrementWeek: () => void;
+  decrementWeek: () => void;
+  resetWeek: () => void;
+
   constructor() {
     super();
     this.state = {
@@ -107,6 +122,10 @@ class DateHeader extends Component {
     this.props.onUpdateWeek('reset');
   }
 }
+DateHeader.propTypes = {
+  week: React.PropTypes.object,
+  onUpdateWeek: React.PropTypes.func
+};
 
 export default DateHeader;
 

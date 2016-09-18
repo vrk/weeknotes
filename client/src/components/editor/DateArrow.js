@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import './DateArrow.css';
 
@@ -27,4 +29,9 @@ export default class DateArrow extends Component {
     }
   }
 }
+DateArrow.propTypes = {
+	active: React.PropTypes.bool,
+  direction: React.PropTypes.string,
+  onClick: React.PropTypes.func
+};
 

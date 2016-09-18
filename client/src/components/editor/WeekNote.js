@@ -1,12 +1,15 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import Remarkable from 'remarkable';
 
 import './WeekNote.css';
 
 class WeekNote extends Component {
+  _onClick: () => void;
+
   constructor() {
     super();
-
     this._onClick = this._onClick.bind(this);
   }
 
@@ -29,11 +32,10 @@ class WeekNote extends Component {
     return { __html: rawMarkup };
   }
 
-  _onClick(evt) {
+  _onClick(evt: Event) {
     var target = evt.target;
-
     // Ignore click events if it's a link.
-    if (target.tagName.toLowerCase() === 'a') {
+    if (target instanceof Element && target.tagName.toLowerCase() === 'a') {
       return;
     }
     this.props.onActivate(evt);
