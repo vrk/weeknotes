@@ -11,7 +11,7 @@ class Home extends Component {
   // Override
   render() {
     return (
-      <div id="main">
+      <div id="main" className="home">
         <div className="description">
           <p>
             Weeknotes is a free tool that lets you create a weekly log of <strong>private notes</strong>.
