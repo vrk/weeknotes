@@ -35,7 +35,7 @@ const initialState = {
 function getDefaultNote() {
   let note_map = {};
   const week_id = new WeekDate().getId();
-  note_map[week_id] = "# Welcome to Weeknotes!\n- Click to edit your note!\n- Use [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting";
+  note_map[week_id] = "# TODO\n- Click to edit your note!\n- Use [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting";
   return note_map;
 }
 
