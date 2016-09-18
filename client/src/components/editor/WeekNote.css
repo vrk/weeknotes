@@ -3,18 +3,21 @@
   padding: 0 2em;
 }
 
-#week-note div:hover {
-  border: 1px solid whitesmoke;
-}
-
 #week-note div {
-  border: 1px solid white;
   margin-bottom: 3em;
   min-height: 35em;
-  padding: 0 3em;
 }
 
 @media screen and (min-width: 45em) {
+  #week-note div {
+    padding: 0 3em;
+  }
 
+  #week-note div {
+    border: 1px solid white;
+  }
 
+  #week-note div:hover {
+    border: 1px solid whitesmoke;
+  }
 }

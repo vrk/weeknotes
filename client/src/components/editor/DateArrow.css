@@ -4,6 +4,7 @@
   text-align: center;
   width: 2em;
 }
+
 @media screen and (min-width: 45em) {
   .hidden {
     visibility: hidden;

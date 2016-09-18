@@ -1,17 +1,52 @@
-@media screen and (min-width: 45em) {
+#header {
+  text-align: center;
+}
+
+#header hr {
+  border: 0;
+  border-top: 2px solid #DDE4E8;
+  width: 95%;
+}
+
+#header nav span {
+  border-radius: 0.5em;
+  background: whitesmoke;
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 0.5em 0.75em;
+}
+
+#header nav {
+  display: inline-block;
+}
+
+#logo {
+  font-size: 2em;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+@media screen and (min-width: 55em) {
   #header {
     margin: auto;
-    max-width: 1000px;
+    text-align: left;
   }
 
   #header nav, #logo {
     display: inline-block;
     line-height: 100px;
+    margin: 0;
   }
 
   #header > nav {
     vertical-align: top;
     width: 65%;
+  }
+
+  #header nav span {
+    background: white;
+    border-radius: 0;
+    display: inline;
   }
 
   #header nav.left {
@@ -25,10 +60,8 @@
   }
 
   #header hr {
-    border: 0;
-    border-top: 2px solid #DDE4E8;
     margin: 0 auto;
-    width: 95%;
+    width: 100%;
   }
 
   #logo {
