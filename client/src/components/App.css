@@ -1,5 +1,13 @@
+a {
+  color: #942c3c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .App {
-  font-family: sans-serif;
   font-size: 11pt;
   margin: auto;
   max-width: 1000px;

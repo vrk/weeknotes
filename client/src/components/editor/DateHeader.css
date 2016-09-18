@@ -14,4 +14,8 @@
   #date-header {
     text-align: left;
   }
+
+  #date-header {
+    margin: 1em 2em;
+  }
 }

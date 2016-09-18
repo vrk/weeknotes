@@ -17,7 +17,7 @@ class SignedInNav extends Component {
         <nav>
           <nav className="left">
             <span className="link">
-              Hi {userName}! <Link to="/" onClick={this.props.onLogOutClick}>logout</Link>
+              Hi {userName}! (<Link to="/" onClick={this.props.onLogOutClick}>logout</Link>)
             </span>
           </nav>
           <nav className="right">

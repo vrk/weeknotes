@@ -13,11 +13,16 @@ class SignUp extends Component {
         <div id="sign-up-container">
           <h1>sign&middot;up</h1>
           <hr/>
-          <p>Weeknotes will NEVER post to your Facebook, send your friends notifications, email you or your contacts, or otherwise do dirtbag things. Promise!
+          <p>
+            Sign up with your Gmail account! Weeknotes won't share your email, spam you or your contacts, or otherwise do dirtbag things. Promise!
           </p>
-          <GoogleLoginLink to="/">Sign up with Google</GoogleLoginLink>
+          <p className="googleLogin">
+            <GoogleLoginLink to="/">Sign up with Google</GoogleLoginLink>
+          </p>
           <hr/>
+          <p>
           Or <GoogleLoginLink to="/">log in</GoogleLoginLink> if you already have an account.
+          </p>
         </div>
       </div>
     );
