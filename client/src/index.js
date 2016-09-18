@@ -8,7 +8,7 @@ import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 
 import rootReducer from './reducers/AppReducers'
 import App from './components/App';
-import Main from './components/editor/Main';
+import Main from './components/Main';
 import SignUp from './components/signup/SignUp'
 
 import './index.css';
