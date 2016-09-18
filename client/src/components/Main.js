@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 
 import EditorMain from './editor/EditorMain'
+import Home from './info/Home'
 import subscribeToStore from './../lib/Subscribe'
 
 class Main extends Component {
@@ -13,7 +14,7 @@ class Main extends Component {
 
     // TODO(vrk): Return splash screen when not logged in.
     if (!state.auth || !state.currentUser)
-      return null;
+      return <Home/>;
 
     return <EditorMain />;
   }
