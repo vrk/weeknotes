@@ -7,10 +7,13 @@ import './WeekNoteEditor.css';
 
 class WeekNoteEditor extends Component {
   handleTextChange: () => void;
+  _onFocus: () => void;
+
   constructor() {
     super();
 
     this.handleTextChange = this.handleTextChange.bind(this);
+    this._onFocus = this._onFocus.bind(this);
   }
 
   render() {
@@ -18,8 +21,9 @@ class WeekNoteEditor extends Component {
     return (
       <div id="week-note">
         <textarea
+          onFocus={this._onFocus}
           onChange={this.handleTextChange}
-          ref={(input) => { if (input != null) { input.focus(); input.setSelectionRange(0,0); input.scrollTop = 0; } }}
+          ref={(input) => { if (input != null) { input.focus(); } }}
           defaultValue={this.props.contents} />
       </div>
     );
@@ -30,6 +34,15 @@ class WeekNoteEditor extends Component {
     if (e.target instanceof HTMLTextAreaElement) {
       var value = e.target.value;
       this.props.onUpdateText(value);
+    }
+  }
+
+  _onFocus(e: Event) {
+    assert(e.target instanceof HTMLTextAreaElement);
+    const element = e.target;
+    if (element instanceof HTMLTextAreaElement) {
+      element.setSelectionRange(0,0);
+      element.scrollTop = 0;
     }
   }
 }
