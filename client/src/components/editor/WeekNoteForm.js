@@ -1,11 +1,20 @@
+/* @flow */
+
 import React, { Component } from 'react';
 
 import WeekNote from './WeekNote'
 import WeekNoteEditor from './WeekNoteEditor'
 
 class WeekNoteForm extends Component {
-  constructor(props) {
-    super(props);
+  state: {
+    editorActive: boolean
+  }
+  onUpdateText: () => void;
+  handleFormBlur: () => void;
+  handleEditorActivate: () => void;
+
+  constructor() {
+    super();
 
     this.state = {
       editorActive: false
@@ -17,7 +26,6 @@ class WeekNoteForm extends Component {
 
   // Override
   render() {
-    this.updatingText = this.props.contents;
     return (
       <form onBlur={this.handleFormBlur}>
         <WeekNote
@@ -34,7 +42,7 @@ class WeekNoteForm extends Component {
     );
   }
 
-  onUpdateText(text) {
+  onUpdateText(text: string) {
     this.props.onUpdateEntry(text);
   }
 
