@@ -1,7 +1,11 @@
+/* @flow */
+
 import DateUtil from './DateUtil';
 
 class WeekDate {
-  constructor(date) {
+  date: Date;
+
+  constructor(date: ?Date) {
     this.date = date ? new Date(date) : new Date();
   }
 
