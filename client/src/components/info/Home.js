@@ -3,6 +3,7 @@
 import { Link } from 'react-router';
 import React, { Component } from 'react';
 
+import subscribeToStore from '../../lib/Subscribe'
 import GoogleLoginLink from '../shared/GoogleLoginLink'
 
 import './Home.css';
@@ -10,6 +11,12 @@ import './Home.css';
 class Home extends Component {
   // Override
   render() {
+    const { store } = this.context;
+    const state = store.getState();
+
+    if (!state.auth)
+      return null;
+
     return (
       <div id="main" className="home">
         <div className="description">
@@ -37,6 +44,10 @@ class Home extends Component {
     );
   }
 }
+Home.contextTypes = {
+  store: React.PropTypes.object
+};
 
+Home = subscribeToStore(Home);
 export default Home;
 
