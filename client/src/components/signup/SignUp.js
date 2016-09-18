@@ -14,7 +14,7 @@ class SignUp extends Component {
           <h1 className="static-header">sign&middot;up</h1>
           <hr/>
           <p>
-            Sign up with your Gmail account! Weeknotes won't share your email, spam you or your contacts, or otherwise do dirtbag things. Promise!
+            Sign up with your Gmail account! Weeknotes won't share your email, spam you or your contacts, or otherwise do dirtbag things with your email. Promise!
           </p>
           <p className="googleLogin">
             <GoogleLoginLink to="/">Sign up with Google</GoogleLoginLink>

@@ -34,7 +34,7 @@ class Home extends Component {
         </div>
 
         <div className="sign-up">
-          <GoogleLoginLink className="home-sign-up" to="/">Sign up</GoogleLoginLink>
+          <Link className="home-sign-up" to="/signup">Sign up</Link>
           <p>
             Or <Link to="/about">learn more</Link> about how it works!!<br/>
             (There's...not much to it.)
