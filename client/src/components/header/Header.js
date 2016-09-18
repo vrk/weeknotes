@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 
@@ -8,6 +10,8 @@ import subscribeToStore from '../../lib/Subscribe'
 import './Header.css';
 
 class Header extends Component {
+  onLogOutClick_: () => void;
+
   constructor() {
     super();
 

@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 
@@ -6,6 +8,8 @@ import Requests from '../../lib/Requests'
 import subscribeToStore from '../../lib/Subscribe'
 
 class GoogleLoginLink extends Component {
+  onSignUp_: () => void;
+
   constructor() {
     super();
     this.onSignUp_ = this.onSignUp_.bind(this);
