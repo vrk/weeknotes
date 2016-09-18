@@ -1,3 +1,5 @@
+/* @flow */
+
 var express = require('express');
 var bodyParser = require('body-parser')
 var co = require('co');
@@ -11,6 +13,10 @@ var router = express.Router();
 
 var jsonParser = bodyParser.json()
 
+type UserInfo = {
+  gmail_id: string;
+  email: string; 
+};
 // Log in user and retrieve notes.
 router.post('/login', jsonParser, (req, res) => {
   const id_token = req.body.id_token;
@@ -26,9 +32,17 @@ router.post('/login', jsonParser, (req, res) => {
   co(function* () {
     var user_info = yield validateToken(id_token);
     var db = yield getDatabase();
+    if (!db || !user_info) {
+      return { success: false };
+    }
+
     let users = new Users(db);
     let notes_model = new Notes(db);
     var user_record = yield users.getUser(user_info);
+    if (!user_record) {
+      return { success: false };
+    }
+
     let notes = yield notes_model.getNotesByIds(user_record.value.notes);
     db.close();
     return {
@@ -64,8 +78,15 @@ router.post('/notes', jsonParser, (req, res) => {
   co(function* () {
     var user_info = yield validateToken(id_token);
     var db = yield getDatabase();
+    if (!db || !user_info) {
+      return { success: false };
+    }
+
     let users = new Users(db);
     var user_record = yield users.getUser(user_info);
+    if (!user_record) {
+      return { success: false };
+    }
 
     let notes = new Notes(db);
     var user_id = user_record.value._id;

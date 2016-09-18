@@ -1,11 +1,18 @@
+/* @flow */
+
 var co = require('co');
 
+import type { MongoClient } from 'mongodb';
+import type { ObjectId } from 'mongodb';
+
 export class Notes {
-  constructor(db) {
+  db: MongoClient;
+
+  constructor(db: MongoClient) {
     this.db = db;
   }
 
-  saveNote(user_id, week_id, contents) {
+  saveNote(user_id: string, week_id: string, contents: string) {
     var query = {'week_id': week_id};
     var doc = {
       '$set': {
@@ -23,6 +30,9 @@ export class Notes {
     return co(function* () {
 			// Save note in notes.
       var result = yield notes_db.findOneAndUpdate(query, doc, options);
+      if (!result) {
+        return;
+      }
       var note_id = result.value._id;
       // Update user array of notes if it doesn't already exist.
       var update_user_query = { '_id': user_id };
@@ -31,7 +41,7 @@ export class Notes {
     });
   }
 
-  getNotesByIds(note_ids) {
+  getNotesByIds(note_ids: ObjectId[]) {
     if (!note_ids) return Promise.resolve([]);
     var notes_db = this.db.collection('notes');
     return notes_db.find({_id: { $in : note_ids } } ).toArray();
