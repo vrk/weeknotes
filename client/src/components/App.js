@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 
 import Header from './header/Header'
@@ -9,6 +11,8 @@ import { OAUTH_LOADED } from '../actions/WeekNoteActions'
 import './App.css';
 
 class App extends Component {
+  onGoogleApiLoaded_: () => void;
+
   constructor() {
     super();
 
