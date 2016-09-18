@@ -1,43 +1,45 @@
-#header {
-  margin: auto;
-  max-width: 1000px;
-}
+@media screen and (min-width: 45em) {
+  #header {
+    margin: auto;
+    max-width: 1000px;
+  }
 
-#header nav, #logo {
-  display: inline-block;
-  line-height: 100px;
-}
+  #header nav, #logo {
+    display: inline-block;
+    line-height: 100px;
+  }
 
-#header > nav {
-  vertical-align: top;
-  width: 65%;
-}
+  #header > nav {
+    vertical-align: top;
+    width: 65%;
+  }
 
-#header nav.left {
-  text-align: left;
-  width: 50%;
-}
+  #header nav.left {
+    text-align: left;
+    width: 50%;
+  }
 
-#header nav.right {
-  text-align: right;
-  width: 50%;
-}
+  #header nav.right {
+    text-align: right;
+    width: 50%;
+  }
 
-#header hr {
-  border: 0;
-  border-top: 2px solid #DDE4E8;
-  margin: 0 auto;
-  width: 95%;
-}
+  #header hr {
+    border: 0;
+    border-top: 2px solid #DDE4E8;
+    margin: 0 auto;
+    width: 95%;
+  }
 
-#logo {
-  font-size: 30pt;
-  letter-spacing: 0.2em;
-  vertical-align: top;
-  width: 35%;
-  text-align: center;
-}
+  #logo {
+    font-size: 30pt;
+    letter-spacing: 0.2em;
+    vertical-align: top;
+    width: 35%;
+    text-align: center;
+  }
 
-span.link {
-  padding: 50px;
+  span.link {
+    padding: 50px;
+  }
 }

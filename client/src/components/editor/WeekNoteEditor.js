@@ -16,10 +16,12 @@ class WeekNoteEditor extends Component {
   render() {
     if (!this.props.active) return null;
     return (
-      <textarea
-        onChange={this.handleTextChange}
-        ref={(input) => { if (input != null) input.focus(); }}
-        defaultValue={this.props.contents} />
+      <div id="week-note">
+        <textarea
+          onChange={this.handleTextChange}
+          ref={(input) => { if (input != null) { input.focus(); input.setSelectionRange(0,0); input.scrollTop = 0; } }}
+          defaultValue={this.props.contents} />
+      </div>
     );
   }
 
