@@ -34,9 +34,9 @@ class EditorMain extends Component {
   render() {
     const { store } = this.context;
     let state = store.getState();
-    let entries = state.notes || {};
+    let entries = state.notes || new Map();
 
-    const entry = entries[this.state.week.getId()] || '';
+    const entry = entries.get(this.state.week.getId()) || '';
     return (
         <div id="main">
           <DateHeader week={this.state.week} onUpdateWeek={this.onUpdateWeek}/>

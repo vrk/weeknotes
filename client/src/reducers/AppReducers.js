@@ -22,27 +22,31 @@ type Action = {
 type State = {
   auth: ?Object,
   currentUser: ?Object,
-  notes: {[id:string]: string}
+  notes: Map<string, string>
 };
 
 const initialState = {
   // Whether the week note editor is active.
   auth: null,
   currentUser: null,
-  notes: getDefaultNote()
+  notes: new Map()
 };
 
 function getDefaultNote() {
-  let note_map = {};
-  const week_id = new WeekDate().getId();
-  note_map[week_id] = "# TODO\n- Click to edit your note!\n- Use [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting";
-  return note_map;
+  return {
+    week_id: new WeekDate().getId(),
+    contents: "# TODO\n- Click to edit your note!\n- Use [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting"
+  };
 }
 
 function convertNotesToMap(state, notes_response) {
-  var notes_map = Object.assign({}, state.notes);
+  var notes_map = new Map(state.notes);
   for (const note of notes_response) {
-    notes_map[note.week_id] = note.contents;
+    notes_map.set(note.week_id, note.contents);
+  }
+  if (notes_map.size === 0) {
+    let note = getDefaultNote();
+    notes_map.set(note.week_id, note.contents);
   }
   return notes_map;
 }
@@ -67,11 +71,11 @@ export default function rootReducer(
         currentUser: null
       });
     case LOCAL_NOTE_UPSERT:
-      let notes = Object.assign({}, state.notes);
       let note = action.note;
-      notes[note.week_id] = note.contents;
+      let newNotes = new Map(state.notes);
+      newNotes.set(note.week_id, note.contents);
       return Object.assign({}, state, {
-        notes: notes 
+        notes: newNotes 
       });
     default:
       return state;
