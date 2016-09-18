@@ -1,7 +1,5 @@
 /* @flow */
 
-var co = require('co');
-
 import type { MongoClient } from 'mongodb';
 import type { ObjectId } from 'mongodb';
 
@@ -27,9 +25,9 @@ export class Notes {
 
     var notes_db = this.db.collection('notes');
     var users_db = this.db.collection('users');
-    return co(function* () {
+    return async function() {
 			// Save note in notes.
-      var result = yield notes_db.findOneAndUpdate(query, doc, options);
+      var result = await notes_db.findOneAndUpdate(query, doc, options);
       if (!result) {
         return;
       }
@@ -37,8 +35,8 @@ export class Notes {
       // Update user array of notes if it doesn't already exist.
       var update_user_query = { '_id': user_id };
       var update_user_doc = { '$addToSet': { 'notes':  note_id } };
-      yield users_db.update(update_user_query, update_user_doc);
-    });
+      await users_db.update(update_user_query, update_user_doc);
+    }();
   }
 
   getNotesByIds(note_ids: ObjectId[]) {

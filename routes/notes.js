@@ -2,7 +2,6 @@
 
 var express = require('express');
 var bodyParser = require('body-parser')
-var co = require('co');
 
 var { validateToken } = require('../lib/auth');
 var { getDatabase } = require('../lib/db');
@@ -29,28 +28,28 @@ router.post('/login', jsonParser, (req, res) => {
     return;
   }
 
-  co(function* () {
-    var user_info = yield validateToken(id_token);
-    var db = yield getDatabase();
+  (async function() {
+    var user_info = await validateToken(id_token);
+    var db = await getDatabase();
     if (!db || !user_info) {
       return { success: false };
     }
 
     let users = new Users(db);
     let notes_model = new Notes(db);
-    var user_record = yield users.getUser(user_info);
+    var user_record = await users.getUser(user_info);
     if (!user_record) {
       return { success: false };
     }
 
-    let notes = yield notes_model.getNotesByIds(user_record.value.notes);
+    let notes = await notes_model.getNotesByIds(user_record.value.notes);
     db.close();
     return {
       success: true,
       user_info: user_record.value,
       notes: notes
     };
-  }).then((value) => {
+  })().then((value) => {
     res.json([value]);
   },
   (err) => {
@@ -75,28 +74,28 @@ router.post('/notes', jsonParser, (req, res) => {
     return;
   }
 
-  co(function* () {
-    var user_info = yield validateToken(id_token);
-    var db = yield getDatabase();
+  (async function() {
+    var user_info = await validateToken(id_token);
+    var db = await getDatabase();
     if (!db || !user_info) {
       return { success: false };
     }
 
     let users = new Users(db);
-    var user_record = yield users.getUser(user_info);
+    var user_record = await users.getUser(user_info);
     if (!user_record) {
       return { success: false };
     }
 
     let notes = new Notes(db);
     var user_id = user_record.value._id;
-    yield notes.saveNote(user_id, week_id, contents);
+    await notes.saveNote(user_id, week_id, contents);
 
     db.close();
     return {
       success: true
     };
-  }).then((value) => {
+  })().then((value) => {
     res.json([value]);
   },
   (err) => {
