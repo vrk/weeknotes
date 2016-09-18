@@ -1,14 +1,18 @@
+/* @flow */
+
 import React, { Component } from 'react';
+import assert from 'assert';
 
 import './WeekNoteEditor.css';
 
 class WeekNoteEditor extends Component {
-  constructor(props) {
-    super(props);
+  handleTextChange: () => void;
+  constructor() {
+    super();
 
     this.handleTextChange = this.handleTextChange.bind(this);
   }
-  // Override
+
   render() {
     if (!this.props.active) return null;
     return (
@@ -19,9 +23,12 @@ class WeekNoteEditor extends Component {
     );
   }
 
-  handleTextChange(e) {
-    var value = e.target.value;
-    this.props.onUpdateText(value);
+  handleTextChange(e: Event) {
+    assert(e.target instanceof HTMLTextAreaElement);
+    if (e.target instanceof HTMLTextAreaElement) {
+      var value = e.target.value;
+      this.props.onUpdateText(value);
+    }
   }
 }
 

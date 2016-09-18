@@ -13,6 +13,7 @@
     "react-test-renderer": "^15.3.1"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "mockdate": "^1.0.4",
     "react": "^15.2.1",
     "react-dom": "^15.3.1",
