@@ -1,11 +1,13 @@
 textarea {
-  height: 35em;
+  font-size: 1.25em;
+  height: 15em;
   width: 100%;
 }
 
 @media screen and (min-width: 45em) {
   textarea {
-    height: 35em;
+    font-size: 1em;
+    height: 25em;
     width: 100%;
   }
 }
