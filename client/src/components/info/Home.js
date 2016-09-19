@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 import React, { Component } from 'react';
 
 import subscribeToStore from '../../lib/Subscribe'
-import GoogleLoginLink from '../shared/GoogleLoginLink'
 
 import './Home.css';
 
