@@ -53,7 +53,6 @@ function convertNotesToMap(state, notes_response) {
  
 export default function rootReducer(
   state: State = initialState, action: Action) {
-  console.log(state);
   switch (action.type) {
     case OAUTH_LOADED:
       return Object.assign({}, state, { 

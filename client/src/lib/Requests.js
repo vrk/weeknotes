@@ -18,7 +18,7 @@ class Requests {
       .then(Requests._parseJSON);
   }
 
-  static saveUserNote(currentUser, note) {
+  static saveUserNote(currentUser, note): Promise<Object> {
     let auth_response = currentUser.getAuthResponse();
     let id_token = auth_response.id_token;
     return fetch('/api/notes', {

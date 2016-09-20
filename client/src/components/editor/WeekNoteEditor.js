@@ -25,6 +25,7 @@ class WeekNoteEditor extends Component {
           onChange={this.handleTextChange}
           ref={(input) => { if (input != null) { input.focus(); } }}
           defaultValue={this.props.contents} />
+        <span className="status">{this._getText()}</span>
       </div>
     );
   }
@@ -43,6 +44,14 @@ class WeekNoteEditor extends Component {
     if (element instanceof HTMLTextAreaElement) {
       element.setSelectionRange(0,0);
       element.scrollTop = 0;
+    }
+  }
+
+  _getText(): string {
+    if (this.props.isContentSaved) {
+      return 'Saved';
+    } else {
+      return 'Saving...';
     }
   }
 }

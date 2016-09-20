@@ -11,7 +11,8 @@ import { LOCAL_NOTE_UPSERT } from '../../actions/WeekNoteActions'
 
 class EditorMain extends Component {
   state: {
-    week: WeekDate
+    week: WeekDate,
+    isContentSaved: boolean
   };
 
   timerId: ?number;
@@ -22,7 +23,8 @@ class EditorMain extends Component {
     super();
 
     this.state = {
-      week: new WeekDate()
+      week: new WeekDate(),
+      isContentSaved: true
     };
 
     this.timerId = null;
@@ -41,7 +43,7 @@ class EditorMain extends Component {
         <div id="main">
           <DateHeader week={this.state.week} onUpdateWeek={this.onUpdateWeek}/>
           <WeekNoteForm contents={entry}
-            onUpdateEntry={this.onUpdateEntry} />
+            onUpdateEntry={this.onUpdateEntry} isContentSaved={this.state.isContentSaved} />
         </div>
     );
   }
@@ -84,6 +86,9 @@ class EditorMain extends Component {
   }
 
   saveEntryToServer(newEntry) {
+    this.setState({
+      isContentSaved: false
+    });
     if (this.timerId) {
       clearTimeout(this.timerId);
     }
@@ -92,8 +97,13 @@ class EditorMain extends Component {
     let auth = state.auth;
     let currentUser = auth.currentUser.get();
     let note = newEntry;
-    this.timerId = setTimeout(() => {
-      Requests.saveUserNote(currentUser, note);
+    this.timerId = setTimeout(async () => {
+      var result = await Requests.saveUserNote(currentUser, note);
+      if (result.length > 0 && result[0].success) {
+        this.setState({
+          isContentSaved: true
+        });
+      }
     }, 750);
   }
 }

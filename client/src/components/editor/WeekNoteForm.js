@@ -27,7 +27,7 @@ class WeekNoteForm extends Component {
   // Override
   render() {
     return (
-      <form onBlur={this.handleFormBlur}>
+      <form onBlur={this.handleFormBlur} onSubmit={this.handleFormSubmit}>
         <WeekNote
           contents={this.props.contents}
           active={!this.state.editorActive}
@@ -37,6 +37,7 @@ class WeekNoteForm extends Component {
           contents={this.props.contents}
           active={this.state.editorActive}
           onUpdateText={this.onUpdateText}
+          isContentSaved={this.props.isContentSaved}
         />
       </form>
     );
@@ -52,6 +53,10 @@ class WeekNoteForm extends Component {
 
   handleEditorActivate() {
     this.setState({ editorActive: true });
+  }
+
+  handleFormSubmit() {
+    this.setState({ editorActive: false });
   }
 }
 
