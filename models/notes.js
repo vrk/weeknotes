@@ -11,7 +11,7 @@ export class Notes {
   }
 
   saveNote(user_id: string, week_id: string, contents: string) {
-    var query = {'week_id': week_id};
+    var query = {'week_id': week_id, 'user_id': user_id};
     var doc = {
       '$set': {
         week_id: week_id,
