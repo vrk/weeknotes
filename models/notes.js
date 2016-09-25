@@ -11,28 +11,50 @@ export class Notes {
   }
 
   saveNote(user_id: string, week_id: string, contents: string) {
-    var query = {'week_id': week_id, '_id': user_id};
     var doc = {
       '$set': {
         week_id: week_id,
         contents: contents
       }
     };
-    var options = {
-      upsert: true,
-      returnOriginal: false 
-    };
 
     var notes_db = this.db.collection('notes');
     var users_db = this.db.collection('users');
-    console.log(query);
     return async function() {
-			// Save note in notes.
-      var result = await notes_db.findOneAndUpdate(query, doc, options);
-      if (!result) {
+      var user_result = await users_db.findOne({ _id: user_id});
+      if (!user_result) {
         return;
       }
-      var note_id = result.value._id;
+      var note_to_update = { week_id: week_id, contents: contents };
+      var update_existing = false;
+
+      if (user_result.notes) {
+        var notes = await notes_db.find({_id: { $in : user_result.notes } } ).toArray() ;
+        for (var note of notes) {
+          if (note.week_id == week_id) {
+            update_existing = true;
+            note_to_update = note;
+            break;
+          }
+        }
+      }
+      var result = null;
+      if (update_existing && note_to_update._id) {
+        var query = { _id: note_to_update._id};
+        var options = {
+          upsert: false,
+          returnOriginal: false 
+        };
+        // Save note in notes.
+        result = await notes_db.findOneAndUpdate(query, doc, options);
+      } else {
+        result = await notes_db.insert(note_to_update);
+      }
+
+      if (!result || !note_to_update._id) {
+        return;
+      }
+      var note_id = note_to_update._id;
       // Update user array of notes if it doesn't already exist.
       var update_user_query = { '_id': user_id };
       var update_user_doc = { '$addToSet': { 'notes':  note_id } };
