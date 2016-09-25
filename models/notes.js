@@ -11,7 +11,7 @@ export class Notes {
   }
 
   saveNote(user_id: string, week_id: string, contents: string) {
-    var query = {'week_id': week_id, 'user_id': user_id};
+    var query = {'week_id': week_id, '_id': user_id};
     var doc = {
       '$set': {
         week_id: week_id,
@@ -25,6 +25,7 @@ export class Notes {
 
     var notes_db = this.db.collection('notes');
     var users_db = this.db.collection('users');
+    console.log(query);
     return async function() {
 			// Save note in notes.
       var result = await notes_db.findOneAndUpdate(query, doc, options);
